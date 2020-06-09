@@ -1,6 +1,6 @@
 <template>
     <div id="repos">
-        <repo :v-for="repo in repos" :repo="repo"/>
+        <repo v-for="repo in repos" :repo="repo"/>
     </div>
 </template>
 
@@ -57,6 +57,7 @@ export default {
         // Send an HTTP get request to the GitHub API to get the most starred repos 
         axios.get(`https://api.github.com/search/repositories?q=created:>${this.priorDate}&sort=stars&order=desc`).then(res=>{
             this.repos=res.data.items;
+            console.log(res.data.items[0]);
         }).catch(err=>{
             console.log(err);
         });
