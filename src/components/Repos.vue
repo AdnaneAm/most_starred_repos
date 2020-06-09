@@ -1,16 +1,16 @@
 <template>
     <div id="repos">
-        <repo v-for="repo in repos" :repo="repo"/>
+        <Repo v-for="repo in repos" :repo="repo"/>
     </div>
 </template>
 
 <script>
-import repo from './Repo.vue'
+import Repo from './Repo.vue'
 import axios from 'axios' 
 import $ from 'jquery'
 export default {
     components:{
-        repo,
+        Repo,
     },
     data(){
         return {

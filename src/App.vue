@@ -1,38 +1,35 @@
 <template>
   <div id="app">
-    <repos ref="repos"/>
+    <Header />
+    <Repos ref="repos"/>
   </div>
 </template>
 <script>
-import repos from './components/Repos.vue'
+import Repos from './components/Repos.vue'
+import Header from './components/Header.vue'
 
 export default {
   components:{
-    repos,
+    Repos,Header
     }
 }
 
 </script>
 
 <style lang="scss">
+// General styles and resets
+h1,h2,h3,h4,h5,p{
+  padding:0 !important;
+  margin:0 !important;
+}
+body{
+  background:#f6fdff;
+}
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-}
-
-#nav {
-  padding: 30px;
-
-  a {
-    font-weight: bold;
-    color: #2c3e50;
-
-    &.router-link-exact-active {
-      color: #42b983;
-    }
-  }
 }
 </style>
