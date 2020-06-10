@@ -1,7 +1,7 @@
 <template>
   <div id="app">
-    <Header />
-    <Repos ref="repos"/>
+    <Header @usr-search="updateSearchTerm"/>
+    <Repos ref="repos" :searchTerm="searchTerm"/>
   </div>
 </template>
 <script>
@@ -9,6 +9,16 @@ import Repos from './components/Repos.vue'
 import Header from './components/Header.vue'
 
 export default {
+  data(){
+    return {
+      searchTerm:''
+    }
+  },
+  methods:{
+    updateSearchTerm(value){
+      this.searchTerm=value;
+    }
+  },
   components:{
     Repos,Header
     }
@@ -23,7 +33,7 @@ h1,h2,h3,h4,h5,p{
   margin:0 !important;
 }
 body{
-  background:#f6fdff;
+  background:#f9feff;
 }
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;

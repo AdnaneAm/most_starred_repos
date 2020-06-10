@@ -8,7 +8,8 @@
             <div class="repo-footer">
                 <span class="stars-nb">Stars <span>{{intToString(repo.stargazers_count)}}</span></span>
                 <span class="issues-nb">Issues <span>{{intToString(repo.open_issues_count)}}</span></span>
-                <span>Submitted <span class="time-interval">{{time_interval}} days ago</span> by <span class="repo-owner">{{repo.owner.login}}</span></span>
+                <span class="time-interval">Submitted <span>{{time_interval}} days ago </span></span>
+                <span class="repo-owner"> by <span>{{repo.owner.login}}</span></span> 
             </div>
         </div>
     </div>
@@ -58,7 +59,7 @@ export default {
         min-height:150px;
         .repo-avatar{
             width: 150px;
-            background-size:cover;
+            background-size:contain;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -86,31 +87,34 @@ export default {
                 line-height: 1.3rem;
             }
             .repo-footer{
-                align-self:flex-end;
+                width:100%;
+                padding:1rem 0;
                 span{
                     font-weight: 500;
                     color:#474a4c;
                     font-size: 0.9rem;
                 }
                 .stars-nb,.issues-nb{
-                    padding: 0.5rem 1rem;
+                    padding: 0.7rem 1rem;
                     display: inline-block;
-                    border: 2px solid #6d6d6d;
                     border-radius: 1.5rem;
                     font-size: 0.8rem;
                     font-weight: 600;
-                    margin: 1rem 1rem 1rem 0;
+                    margin-right:1rem;
+                    background: #f2f5f7;
+                    color: #96a1a9;
                     span{
-                        color: #4e4e4e;
+                        color:#4f565a;
                         font-weight:bold;
                     }
                 }
                 .time-interval,.repo-owner{
-                    font-weight: 600;
-                    letter-spacing: -0.04em;
-                    color: #797979;
+                    color:#babeca;
+                    span{
+                        color:#758188;
+                        letter-spacing: -0.02em;
+                    }
                 }
-
             }
         }
 

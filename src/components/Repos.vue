@@ -15,20 +15,26 @@ export default {
     data(){
         return {
             //loaded repos
-            repos:[
-                {
-                    id:1,
-                    title:"Repo 1"
-                },
-                {
-                    id:2,
-                    title:"Repo 2"
-                }
-            ],
+            repos:[],
             // page counter 
             currentPage:1,
             // the date 30 days before
-            priorDate:String
+            priorDate:String,
+        }
+    },
+    props:{
+        searchTerm:{
+            type:String,
+            default:''
+        }
+    },
+    watch:{
+        searchTerm(newV,oldV){
+            axios.get(`https://api.github.com/search/repositories?q=${newV}+created:>${this.priorDate}&sort=stars&order=desc`).then(res=>{
+                this.repos=res.data.items;
+            }).catch(err=>{
+                console.log(err);
+            });   
         }
     },
     methods:{
@@ -36,7 +42,7 @@ export default {
         getMoreRepos(){
             // increment page counter to get the next page
             this.currentPage++;
-            axios.get(`https://api.github.com/search/repositories?q=created:>${this.priorDate}&sort=stars&order=desc&page=${this.currentPage}`).then(res=>{
+            axios.get(`https://api.github.com/search/repositories?q=${this.searchTerm}+created:>${this.priorDate}&sort=stars&order=desc&page=${this.currentPage}`).then(res=>{
                 this.repos=[...this.repos,...res.data.items];    
             }).catch(err=>{
                 console.log(err);
@@ -44,7 +50,7 @@ export default {
         },
         // method to tell if the user reached the bottom of the page, if so execute getMoreRepos method 
         hasReachedBottom(){
-            if($(window).scrollTop() + $(window).height() == $(document).height()) {
+            if($(window).scrollTop() == $(document).height()-$(window).height()) {
                  this.getMoreRepos();
             }
         }
@@ -57,7 +63,6 @@ export default {
         // Send an HTTP get request to the GitHub API to get the most starred repos 
         axios.get(`https://api.github.com/search/repositories?q=created:>${this.priorDate}&sort=stars&order=desc`).then(res=>{
             this.repos=res.data.items;
-            console.log(res.data.items[0]);
         }).catch(err=>{
             console.log(err);
         });
