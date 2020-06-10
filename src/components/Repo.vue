@@ -9,7 +9,11 @@
                 <span class="stars-nb">Stars <span>{{intToString(repo.stargazers_count)}}</span></span>
                 <span class="issues-nb">Issues <span>{{intToString(repo.open_issues_count)}}</span></span>
                 <span class="time-interval">Submitted <span>{{time_interval}} days ago </span></span>
-                <span class="repo-owner"> by <span>{{repo.owner.login}}</span></span> 
+                <span class="repo-owner"> by 
+                    <span>
+                    {{repo.owner.login}}
+                    </span>
+                </span> 
             </div>
         </div>
     </div>
@@ -79,7 +83,7 @@ export default {
                 font-size: 1.5rem;
                 font-family: Roboto;
                 font-weight: 600;
-                margin: .5rem 0 !important;
+                margin: 0.5rem 0 0.1em 0 !important;
             }
             .repo-desc{
                 font-size: 1rem;
@@ -91,7 +95,7 @@ export default {
             }
             .repo-footer{
                 width:100%;
-                padding:1rem 0;
+                padding-top: 1rem;
                 span{
                     font-weight: 500;
                     color:#474a4c;
@@ -104,8 +108,12 @@ export default {
                     font-size: 0.8rem;
                     font-weight: 600;
                     margin-right:1rem;
-                    background: #f2f5f7;
+                    background: #f3f7fa;
                     color: #96a1a9;
+                    transition:all .3s ease-in-out;
+                    &:hover{
+                        background:#eceff1;
+                    }
                     span{
                         color:#4f565a;
                         font-weight:bold;
@@ -117,6 +125,15 @@ export default {
                         color:#758188;
                         letter-spacing: -0.02em;
                     }
+                }
+                .repo-owner{
+                    white-space: nowrap;
+                    text-overflow: ellipsis;
+                    width: 130px;
+                    display: inline-block;
+                    overflow: auto;
+                    position: relative;
+                    top: 3px;
                 }
             }
         }

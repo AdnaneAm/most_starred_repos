@@ -36,11 +36,14 @@ export default {
         // Whenever the searchTerm changes (whenever the user types smthng in the form and want to look for it) we will execute an HTTP request to the API to get new repos based on the search term
         searchTerm(newV,oldV){
             this.isLoading=true;
+            $('html').css('overflow','hidden');
             axios.get(`https://api.github.com/search/repositories?q=${newV}+created:>${this.priorDate}&sort=stars&order=desc`).then(res=>{
                 this.repos=res.data.items;
-                this.isLoading=false;
             }).catch(err=>{
                 console.log(err);
+            }).finally(()=>{
+            $('html').css('overflow','auto');
+            this.isLoading=false;
             });
         }
     },
@@ -50,15 +53,18 @@ export default {
             // increment page counter to get the next page
             this.currentPage++;
             axios.get(`https://api.github.com/search/repositories?q=${this.searchTerm}+created:>${this.priorDate}&sort=stars&order=desc&page=${this.currentPage}`).then(res=>{
-                this.repos=[...this.repos,...res.data.items];   
+                this.repos=[...this.repos,...res.data.items];  
+                console.log('Fetch number '+this.currentPage);
             }).catch(err=>{
+                console.log(err);
+            }).finally(()=>{
+
             });
         },
         // method to tell if the user reached the bottom of the page, if so execute getMoreRepos method 
         hasReachedBottom(){
-            if($(window).scrollTop() + $(window).height() == $(document).height()) {
+            if($(window).scrollTop() + $(window).height() > $(document).height()-2000) {
                 this.getMoreRepos();
-                $(window).unbind('scroll');
             }
         }
     },
@@ -76,8 +82,21 @@ export default {
         }).finally(()=>{
             this.isLoading=false;
         });
-        // Execute hasReachedBottom method whenever the user scrolls 
-        window.addEventListener('scroll', this.hasReachedBottom);
+        // Throttle function to fire hasRecheadBottom once when the user is near bottom of the page ( Throttling )
+        const throttle=(fn,delay)=>{
+            let last=0;
+            return()=>{
+                const now=new Date().getTime();
+                if(now - last < delay+1000){
+                    return;
+                }
+                last=now;
+                return fn();
+            }
+        }
+        window.addEventListener('scroll',throttle(e=>{
+            this.hasReachedBottom();
+        },50));
 
     }
 
