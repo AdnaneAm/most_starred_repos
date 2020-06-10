@@ -34,6 +34,10 @@ h1,h2,h3,h4,h5,p{
 }
 body{
   background:#f9feff;
+  height:100%;
+}
+html{
+  overflow-x:hidden;
 }
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;

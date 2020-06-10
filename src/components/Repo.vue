@@ -4,7 +4,7 @@
         </div>
         <div class="repo-content">
             <h1 class="repo-name">{{repo.name}}</h1>
-            <p class="repo-desc">{{repo.description}}</p>
+            <p class="repo-desc">{{repo.description==null?'No Description':repo.description}}</p>
             <div class="repo-footer">
                 <span class="stars-nb">Stars <span>{{intToString(repo.stargazers_count)}}</span></span>
                 <span class="issues-nb">Issues <span>{{intToString(repo.open_issues_count)}}</span></span>
@@ -17,6 +17,7 @@
 
 <script>
 export default {
+    name:"Repository",
     props:{
         repo:Object,
     },
@@ -32,6 +33,7 @@ export default {
         }
     },
     methods:{
+        // Method to abbreviate big numerical values into representative strigns (1340 => 1.3K)
         intToString(value){
             let suffixes = ["", "k", "m", "b","t"];
             let suffixNum = Math.floor((""+value).length/3);
@@ -59,6 +61,7 @@ export default {
         min-height:150px;
         .repo-avatar{
             width: 150px;
+            height:150px;
             background-size:contain;
             display: flex;
             justify-content: center;
