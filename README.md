@@ -3,8 +3,9 @@ A Vue.js application for listing the most starred repos that were created in the
 
 ## Used technologies 
 - **Vue.js Framework** : I've use Vue.js library since it's lightweight and fast to load, and it has all the characteristics of a great Front-end framework.
-- **jQuery Library** : I've used jQuery since I'm used to it's easy syntax
-- **Axios** : Axios was responsible for handling HTTP requests (Communicating with GitHub API)
+- **jQuery Library** : I've used jQuery since I'm used to it's easy syntax.
+- **Axios** : Axios was responsible for handling HTTP requests (Communicating with GitHub API).
+- **Sass** : Sass is a CSS Preprocessor thats makes working with CSS more easier and fun.
 
 ## Project setup (Dependencies installation)
 ```
