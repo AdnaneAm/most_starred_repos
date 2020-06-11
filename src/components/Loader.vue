@@ -39,9 +39,13 @@
             display: inline-block;
             position: absolute;
             z-index: 100;
-            top:50%;
+            top:calc(50% - 80px);
             width: 80px;
             height: 80px;
+            left: 0;
+            right: 0;
+            margin-left: auto;
+            margin-right: auto;
             div {
                 position: absolute;
                 border: 4px solid #fff;

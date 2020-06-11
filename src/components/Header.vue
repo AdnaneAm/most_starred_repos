@@ -46,6 +46,7 @@ export default {
                 color: #6f6d6d;
                 font-size: .9rem;
                 border-radius: 0.5em;
+                box-sizing:border-box;
                 &:focus{
                     border:none;
                     outline:none;
@@ -58,7 +59,7 @@ export default {
                 position: absolute;
                 width: 20px;
                 height: 20px;
-                right: -15px;
+                right: 15px;
                 top: 15px;
                 fill: #687488;
                 cursor:pointer;

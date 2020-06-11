@@ -8,12 +8,10 @@
             <div class="repo-footer">
                 <span class="stars-nb">Stars <span>{{intToString(repo.stargazers_count)}}</span></span>
                 <span class="issues-nb">Issues <span>{{intToString(repo.open_issues_count)}}</span></span>
-                <span class="time-interval">Submitted <span>{{time_interval}} days ago </span></span>
-                <span class="repo-owner"> by 
-                    <span>
-                    {{repo.owner.login}}
-                    </span>
-                </span> 
+                <div>
+                    <span class="time-interval">Submitted <span>{{time_interval}} days ago </span></span>
+                    <span class="repo-owner"> by <span>{{repo.owner.login}}</span></span> 
+                </div>
             </div>
         </div>
     </div>
@@ -63,6 +61,7 @@ export default {
         display: flex;
         padding: 1rem;
         min-height:150px;
+
         .repo-avatar{
             width: 150px;
             height:150px;
@@ -74,7 +73,7 @@ export default {
             border-radius: 0.5em;
         }
         .repo-content{
-            padding:0 1.5em;
+            padding:0 .5em 0 1em;
             display: flex;
             flex-wrap: wrap;
             flex: 1;
@@ -96,6 +95,9 @@ export default {
             .repo-footer{
                 width:100%;
                 padding-top: 1rem;
+                div{
+                    display:inline-block;
+                }
                 span{
                     font-weight: 500;
                     color:#474a4c;
@@ -138,5 +140,51 @@ export default {
             }
         }
 
+    }
+    // Media queries
+    // Small devices
+    @media screen and (max-width:800px) {
+        .repo{
+            width: 80%;
+            .repo-avatar{
+                height:auto;
+                background-size:cover;
+                background-position:center center;
+            }
+            .repo-footer{
+                div{
+                    display:block !important;
+                }
+                .repo-owner,.time-interval{
+                    display:inline-block;
+                    width: 50% !important;
+                    margin-top: 1rem;
+                    span{
+                        font-weight:bold;
+                        text-overflow:none;
+                        width:auto;
+                    }
+                }
+                .repo-owner{
+                    text-align:right;
+                }
+            }
+        }
+
+    }
+    // Extra small devices
+    @media screen and (max-width:630px){
+        .repo{
+            flex-wrap:wrap;
+            .repo-avatar{
+                height:180px;
+                width:100%;
+            }
+            .repo-content{
+                .repo-name{
+                    margin:1rem 0 .5rem 0 !important;
+                }
+            }
+        }
     }
 </style>
